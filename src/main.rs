@@ -101,6 +101,11 @@ fn main() -> ExitCode {
             return ExitCode::from(2);
         }
     };
+    if matches!(cmd, "search" | "links" | "status" | "prune" | "help" | "--help" | "-h") {
+        // printing commands end quietly when piped into head (Rust ignores SIGPIPE; the daemon needs that for sockets)
+        // SAFETY: restoring the default disposition of one signal before any output
+        unsafe { libc::signal(libc::SIGPIPE, libc::SIG_DFL) };
+    }
     let json_out = args.iter().any(|a| a == "--json");
     let rest: Vec<&str> = args.iter().skip(1).filter(|a| *a != "--json").map(String::as_str).collect();
     let open_store = || match store::Store::open(&cfg.db_path(), &cfg.frames_dir()) {
