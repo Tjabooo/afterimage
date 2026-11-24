@@ -1,0 +1,59 @@
+# afterimage config: ~/.config/afterimage/config.toml. Every key is optional; these are the defaults.
+# Uncomment what you want to change.
+
+# How often the screen is looked at (seconds). Only tiles whose pixels changed are read.
+# interval = 2.0
+# Outputs to record (connector names, e.g. "DP-3"); empty = all
+# outputs = []
+# Each output is cut into cols x rows tiles (OCR models read ~1 megapixel at full detail), overlapping a bit
+# so a line on a seam is read whole by one of them
+# grid = [2, 2]
+# overlap = 48
+# A changed tile is read once it has stopped changing for `settle` looks (no half-scrolled text),
+# or after `max_wait` seconds of constant change (video, games in a window)
+# settle = 1
+# max_wait = 20.0
+# Never read the same tile more often than this (seconds): a blinking cursor costs nothing
+# min_gap = 6.0
+# Saved screenshots (the timeline): JPEG quality; a frame is saved when its text changed
+# jpeg_quality = 72
+# Auto-delete: frames and text older than this go, and the oldest go first above max_gb
+# retention_hours = 72
+# max_gb = 20.0
+# data_dir = "~/.local/share/afterimage"
+
+[ocr]
+# Any OpenAI-compatible chat endpoint with a vision model. npukit's OCR lane: model "ocr".
+# url = "http://127.0.0.1:13306/v1/chat/completions"
+# model = "ocr"
+# prompt = "OCR:"
+# timeout = 60.0
+# max_tokens = 1536
+
+[privacy]
+# Windows that are blacked out before anything is read or saved (regex on class / title, case-insensitive)
+# exclude_classes = ["keepassxc", "bitwarden", "1password", "pinentry", "polkit", "seahorse"]
+# exclude_titles = ["private browsing", "incognito", "password"]
+# Recording stops while a window like this exists (games: no GPU work, no frames)
+# pause_classes = ["^cs2$", "^steam_app_", "^gamescope$", "sober", "^roblox"]
+# ... or while one of these processes runs (screen locked)
+# pause_processes = ["hyprlock", "swaylock", "gtklock"]
+
+[bar]
+# waybar custom module JSON (return-type json); 0 = no signal
+# file = "$XDG_RUNTIME_DIR/afterimage/bar.json"
+# signal = 0
+
+[ui]
+# font = "JetBrainsMono Nerd Font"
+# timeline scrubber colors
+# bg = "#120d0a"
+# panel = "#1b1410"
+# line = "#3a2c22"
+# fg = "#d8cbbf"
+# subtext = "#b2a397"
+# dim = "#7a675a"
+# accent = "#ff8c1a"
+# accent2 = "#f5a524"
+# alert = "#e5484d"
+# deep = "#ff4d1f"

@@ -1,0 +1,16 @@
+[Unit]
+Description=afterimage: searchable screen memory (low-fps capture + local OCR)
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+ExecStart=%h/.local/bin/afterimage daemon
+Restart=on-failure
+RestartSec=5
+# a background job: the desktop and games always win
+Nice=10
+CPUWeight=20
+IOSchedulingClass=idle
+
+[Install]
+WantedBy=graphical-session.target
